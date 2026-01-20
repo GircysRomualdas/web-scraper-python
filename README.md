@@ -1,6 +1,6 @@
-# Web Crawler
+# Web scraper
 
-A web crawler that fetches web pages and processes their contents.
+A web scraper that fetches web pages and processes their contents.
 
 This project is part of Boot.dev's [Build a Web Scraper in Python](https://www.boot.dev/courses/build-web-scraper-python) course.
 
