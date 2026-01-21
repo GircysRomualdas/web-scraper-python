@@ -21,3 +21,5 @@ def write_csv_report(page_data, filename="report.csv"):
                 "outgoing_link_urls": outgoing_links,
                 "image_urls": image_urls,
             })
+
+    print(f"Web scraper report written to {filename}")
