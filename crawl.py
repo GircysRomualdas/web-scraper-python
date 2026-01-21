@@ -60,3 +60,41 @@ def get_html(url):
         raise Exception(f"response content type is not HTML.")
 
     return res.text
+
+def crawl_page(base_url, current_url=None, page_data=None):
+    if current_url is None:
+        current_url = base_url
+    if page_data is None:
+        page_data = {}
+
+    base_url_obj = urlparse(base_url)
+    current_url_obj = urlparse(current_url)
+    if current_url_obj.netloc != base_url_obj.netloc:
+        return page_data
+
+    nor_url = normalize_url(current_url)
+
+    if nor_url in page_data:
+        return page_data
+
+    print(f"crawling {current_url}")
+    html = safe_get_html(current_url)
+    if html is None:
+        return page_data
+
+    data = extract_page_data(html, current_url)
+
+    page_data[nor_url] = data
+
+    next_urls = get_urls_from_html(html, base_url)
+    for next_url in next_urls:
+        page_data = crawl_page(base_url, next_url, page_data)
+
+    return page_data
+
+def safe_get_html(url):
+    try:
+        return get_html(url)
+    except Exception as e:
+        print(f"{e}")
+        return None
