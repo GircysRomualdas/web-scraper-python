@@ -25,3 +25,20 @@ uv sync
 ---
 
 ## Usage
+
+### Run web scraper:
+```bash
+uv run main.py <url>
+```
+
+- `<url>` The website address where the crawler begins its search.
+
+#### Example
+```bash
+uv run main.py "https://website2.com"
+```
+
+Output:
+```
+starting crawl of: https://website2.com
+```
