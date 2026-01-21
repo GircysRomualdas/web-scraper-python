@@ -1,6 +1,7 @@
 import sys
 import asyncio
 from async_crawler import crawl_site_async
+from csv_report import write_csv_report
 
 async def main_async():
     if len(sys.argv) < 4:
@@ -26,8 +27,8 @@ async def main_async():
 
     valid_pages = [p for p in page_data.values() if p is not None]
     print(f"\nFound {len(valid_pages)} pages:")
-    for page in valid_pages:
-        print(f"- {page['url']}: {len(page['outgoing_links'])} outgoing links")
+
+    write_csv_report(valid_pages)
 
 
 if __name__ == "__main__":
