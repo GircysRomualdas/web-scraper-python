@@ -9,7 +9,7 @@ This project is part of Boot.dev's [Build a Web Scraper in Python](https://www.b
 ## Requirements
 
 - Python 3.12+
-- [uv](https://docs.astral.sh/uv/) (if not installed: `pip install uv`)
+- uv (if not installed: `pip install uv`)
 
 ---
 
