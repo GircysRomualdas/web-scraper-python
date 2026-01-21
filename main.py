@@ -1,7 +1,8 @@
 import sys
-from crawl import crawl_page
+import asyncio
+from async_crawler import crawl_site_async
 
-def main():
+async def main_async():
     if len(sys.argv) < 2:
         print("no website provided")
         sys.exit(1)
@@ -13,12 +14,14 @@ def main():
     base_url = sys.argv[1]
     print(f"Starting crawl of: {base_url}")
 
-    page_data = crawl_page(base_url)
+    page_data = await crawl_site_async(base_url, 10)
 
-    print(f"Found {len(page_data)} pages:")
-    for page in page_data.values():
+    valid_pages = [p for p in page_data.values() if p is not None]
+    print(f"Found {len(valid_pages)} pages:")
+    for page in valid_pages:
         print(f"- {page['url']}: {len(page['outgoing_links'])} outgoing links")
 
 
+
 if __name__ == "__main__":
-    main()
+    asyncio.run(main_async())
